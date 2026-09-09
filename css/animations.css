@@ -1,0 +1,185 @@
+/* ==========================================================================
+   CYBERSECURITY ANIMATIONS & VISUAL FX
+   ========================================================================== */
+
+/* Glitch Title Animation */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-text::before {
+  color: var(--accent-highlight);
+  z-index: -1;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  color: var(--accent-secondary);
+  z-index: -2;
+  clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, 1px); }
+  50% { transform: translate(-1px, 2px); }
+  75% { transform: translate(-2px, -1px); }
+  100% { transform: translate(1px, -2px); }
+}
+
+/* Floating 3D Cards */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.5deg);
+  }
+}
+
+.floating-element {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* Pulse Dot */
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+/* Neon Scanlines Overlay */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 4;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Radar Sweep Animation */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-spinner {
+  animation: radar-sweep 8s linear infinite;
+}
+
+/* Hologram Shimmer Border */
+@keyframes cyber-border-glow {
+  0%, 100% {
+    border-color: var(--border-subtle);
+    box-shadow: 0 0 10px rgba(0, 255, 157, 0.1);
+  }
+  50% {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px var(--accent-primary-glow);
+  }
+}
+
+.hologram-border {
+  animation: cyber-border-glow 4s ease-in-out infinite;
+}
+
+/* Typing Caret */
+.typing-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  background-color: var(--accent-primary);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink-caret 0.9s infinite;
+}
+
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Matrix Background Canvas */
+#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0.06;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+#matrix-canvas.matrix-active {
+  opacity: 0.85;
+  z-index: 999;
+}
+
+/* Audio Visualizer Waveform animation */
+.audio-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 16px;
+}
+
+.audio-bar {
+  width: 3px;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.15s ease;
+}
+
+.audio-playing .audio-bar:nth-child(1) { animation: bar-dance 0.7s infinite alternate ease-in-out; }
+.audio-playing .audio-bar:nth-child(2) { animation: bar-dance 0.9s infinite alternate ease-in-out 0.2s; }
+.audio-playing .audio-bar:nth-child(3) { animation: bar-dance 0.6s infinite alternate ease-in-out 0.4s; }
+.audio-playing .audio-bar:nth-child(4) { animation: bar-dance 0.8s infinite alternate ease-in-out 0.1s; }
+
+@keyframes bar-dance {
+  0% { height: 4px; }
+  100% { height: 16px; }
+}

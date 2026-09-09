@@ -1,0 +1,625 @@
+/* ==========================================================================
+   VIKAS.ELITE // CYBERSECURITY PORTFOLIO - DESIGN SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Light Purple & Cyber Gold (Default Theme) */
+  --bg-primary: #080410;
+  --bg-secondary: #100a20;
+  --bg-tertiary: #191030;
+  --bg-glass: rgba(16, 10, 32, 0.75);
+  --bg-glass-card: rgba(22, 14, 42, 0.68);
+  --bg-glass-elevated: rgba(30, 20, 56, 0.85);
+
+  --accent-primary: #c084fc;       /* Light Cyber Purple / Lavender */
+  --accent-primary-glow: rgba(192, 132, 252, 0.45);
+  --accent-primary-subtle: rgba(192, 132, 252, 0.14);
+  
+  --accent-secondary: #fbbf24;     /* Light Cyber Gold / Amber */
+  --accent-secondary-glow: rgba(251, 191, 36, 0.40);
+  --accent-secondary-subtle: rgba(251, 191, 36, 0.14);
+
+  --accent-highlight: #f472b6;     /* Neon Rose */
+  --accent-highlight-glow: rgba(244, 114, 182, 0.4);
+
+  --accent-amber: #fbbf24;         /* Electric Gold */
+  --accent-amber-glow: rgba(251, 191, 36, 0.4);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8e88a8;
+  --text-accent: #c084fc;
+
+  --border-subtle: rgba(192, 132, 252, 0.22);
+  --border-focus: rgba(251, 191, 36, 0.7);
+  --border-cyan: rgba(251, 191, 36, 0.28);
+  --border-glass: rgba(255, 255, 255, 0.09);
+
+  --font-hud: 'Orbitron', -apple-system, sans-serif;
+  --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-cyber: 0 0 25px rgba(192, 132, 252, 0.28);
+  --shadow-cyan: 0 0 25px rgba(251, 191, 36, 0.25);
+  --shadow-amber: 0 0 25px rgba(251, 191, 36, 0.28);
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Amber VLOGUE Theme */
+[data-theme="amber"] {
+  --bg-primary: #0c0805;
+  --bg-secondary: #17100a;
+  --bg-tertiary: #241910;
+  --bg-glass: rgba(23, 16, 10, 0.8);
+  --bg-glass-card: rgba(36, 25, 16, 0.7);
+  --bg-glass-elevated: rgba(48, 33, 22, 0.85);
+
+  --accent-primary: #ff6b35;       /* Warm Sunset Amber */
+  --accent-primary-glow: rgba(255, 107, 53, 0.45);
+  --accent-primary-subtle: rgba(255, 107, 53, 0.12);
+
+  --accent-secondary: #ffaa00;     /* Electric Gold */
+  --accent-secondary-glow: rgba(255, 170, 0, 0.4);
+  --accent-secondary-subtle: rgba(255, 170, 0, 0.12);
+
+  --accent-highlight: #00e5ff;
+  --accent-highlight-glow: rgba(0, 229, 255, 0.4);
+
+  --text-accent: #ffaa00;
+  --border-subtle: rgba(255, 107, 53, 0.22);
+  --border-focus: rgba(255, 170, 0, 0.7);
+  --shadow-cyber: 0 0 25px rgba(255, 107, 53, 0.3);
+}
+
+/* Synthwave Neon Violet Theme */
+[data-theme="synthwave"] {
+  --bg-primary: #090412;
+  --bg-secondary: #120924;
+  --bg-tertiary: #1c0e38;
+  --bg-glass: rgba(18, 9, 36, 0.8);
+  --bg-glass-card: rgba(28, 14, 56, 0.7);
+  --bg-glass-elevated: rgba(40, 20, 80, 0.85);
+
+  --accent-primary: #b026ff;       /* Laser Purple */
+  --accent-primary-glow: rgba(176, 38, 255, 0.45);
+  --accent-primary-subtle: rgba(176, 38, 255, 0.12);
+
+  --accent-secondary: #00f0ff;     /* Synth Cyan */
+  --accent-secondary-glow: rgba(0, 240, 255, 0.4);
+  --accent-secondary-subtle: rgba(0, 240, 255, 0.12);
+
+  --accent-highlight: #ff0077;
+  --accent-highlight-glow: rgba(255, 0, 119, 0.4);
+
+  --text-accent: #b026ff;
+  --border-subtle: rgba(176, 38, 255, 0.25);
+  --border-focus: rgba(0, 240, 255, 0.7);
+  --shadow-cyber: 0 0 25px rgba(176, 38, 255, 0.3);
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  background-color: transparent; /* BG handled by #bg-slide-wrapper layers */
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background Cyber Grid & Vignette */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(5, 8, 14, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  outline: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-mono);
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINERS & HELPERS
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 5;
+}
+
+.section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 5;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--accent-primary-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.section-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.section-title .text-gradient {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto;
+  font-family: var(--font-body);
+}
+
+/* ==========================================================================
+   COMMON CYBER UI ELEMENTS
+   ========================================================================== */
+
+/* Cyber Buttons */
+.btn-cyber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--font-hud);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  background: var(--accent-primary-subtle);
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  box-shadow: 0 0 15px rgba(0, 255, 157, 0.15);
+}
+
+.btn-cyber::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-cyber:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 0 25px var(--accent-primary-glow);
+  transform: translateY(-2px);
+}
+
+.btn-cyber:hover::before {
+  left: 100%;
+}
+
+.btn-cyber-outline {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid var(--border-glass);
+}
+
+.btn-cyber-outline:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+  background: var(--accent-secondary-subtle);
+  box-shadow: 0 0 20px var(--accent-secondary-glow);
+}
+
+.btn-cyber-instagram {
+  background: linear-gradient(135deg, rgba(253, 29, 29, 0.15), rgba(131, 58, 180, 0.2));
+  color: #ff5e98;
+  border: 1px solid rgba(253, 29, 29, 0.4);
+}
+
+.btn-cyber-instagram:hover {
+  background: linear-gradient(135deg, #fd1d1d, #833ab4);
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(253, 29, 29, 0.4);
+  border-color: transparent;
+}
+
+/* Glass HUD Panels */
+.hud-panel {
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.hud-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.6;
+}
+
+.hud-panel:hover {
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-cyber);
+}
+
+/* HUD Corner Accents */
+.corner-accent {
+  position: relative;
+}
+
+.corner-accent::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  bottom: 4px;
+  right: 4px;
+  pointer-events: none;
+}
+
+/* 3D WebGL Background Canvas */
+#webgl-canvas-hero,
+#webgl-canvas-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 3;
+}
+
+#webgl-canvas-bottom {
+  position: relative;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  background: radial-gradient(circle at center, #0d1829 0%, #05080e 100%);
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--accent-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s;
+  z-index: 9999;
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.custom-cursor.active {
+  width: 44px;
+  height: 44px;
+  background: var(--accent-primary-subtle);
+  border-color: var(--accent-secondary);
+}
+
+@media (pointer: coarse) {
+  .custom-cursor, .custom-cursor-dot {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   3D VIOLET & GOLD LUXURY TYPOGRAPHY SYSTEM (Inspired by User Spec)
+   ========================================================================== */
+
+.text-3d-violet-gold {
+  font-family: 'Cinzel', 'Orbitron', serif;
+  font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 0%, #f3e8ff 18%, #d8b4fe 35%, #a855f7 58%, #7e22ce 80%, #581c87 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 1px 0 #fbbf24,
+    0 2px 0 #f59e0b,
+    0 3px 0 #d97706,
+    0 4px 0 #b45309,
+    0 5px 0 #78350f,
+    0 6px 12px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(192, 132, 252, 0.85),
+    0 0 40px rgba(251, 191, 36, 0.55);
+  letter-spacing: 0.06em;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.text-3d-violet-gold:hover {
+  text-shadow: 
+    0 1px 0 #fef08a,
+    0 2px 0 #fbbf24,
+    0 3px 0 #f59e0b,
+    0 4px 0 #d97706,
+    0 5px 0 #92400e,
+    0 8px 18px rgba(0, 0, 0, 0.95),
+    0 0 30px rgba(232, 121, 249, 1),
+    0 0 60px rgba(251, 191, 36, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Specific Highlight for Navigation: HOME, ABOUT, ARSENAL, TERMINAL, PROJECTS, CONNECT, MECHANISMS */
+.nav-3d-highlight {
+  font-family: 'Cinzel', 'Orbitron', serif !important;
+  font-weight: 800 !important;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #ffffff 0%, #f3e8ff 22%, #c084fc 48%, #9333ea 75%, #6b21a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.75)) drop-shadow(0 2px 0 #d97706);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  position: relative;
+}
+
+.nav-link:hover .nav-3d-highlight,
+.nav-link.active .nav-3d-highlight {
+  background: linear-gradient(180deg, #ffffff 0%, #fae8ff 20%, #e879f9 45%, #c084fc 70%, #9333ea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(232, 121, 249, 0.95)) drop-shadow(0 0 24px rgba(251, 191, 36, 0.8)) drop-shadow(0 2px 0 #f59e0b);
+  transform: scale(1.06);
+}
+
+/* ABOUT ME 3D Badge in Hero */
+.about-me-3d-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 24px;
+  background: linear-gradient(135deg, rgba(30, 15, 55, 0.88), rgba(18, 8, 36, 0.94));
+  border: 2px solid #fbbf24;
+  border-radius: 30px;
+  box-shadow: 
+    0 0 22px rgba(192, 132, 252, 0.55),
+    0 0 38px rgba(251, 191, 36, 0.4),
+    inset 0 0 15px rgba(192, 132, 252, 0.3);
+  margin-bottom: 22px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.about-me-3d-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  animation: shineSpecular 3.5s infinite;
+}
+
+@keyframes shineSpecular {
+  0% { left: -100%; }
+  35%, 100% { left: 200%; }
+}
+
+.about-me-3d-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 0 32px rgba(192, 132, 252, 0.8),
+    0 0 55px rgba(251, 191, 36, 0.65),
+    inset 0 0 20px rgba(192, 132, 252, 0.45);
+}
+
+/* PROFILE Big Letters Highlight on Scroll */
+.profile-big-title {
+  font-size: clamp(3.2rem, 8vw, 6rem) !important;
+  font-family: 'Cinzel', 'Orbitron', serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-block;
+  line-height: 1.05;
+}
+
+.profile-big-title.scrolled-in {
+  filter: drop-shadow(0 0 35px rgba(192, 132, 252, 0.95)) drop-shadow(0 0 75px rgba(251, 191, 36, 0.7));
+  transform: scale(1.04);
+}
+
+/* Bugatti Section & Giant Title */
+.bugatti-section {
+  background: #000000 !important;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(194, 123, 77, 0.35);
+  border-bottom: 1px solid rgba(194, 123, 77, 0.35);
+  padding: 120px 0 90px 0;
+}
+
+.bugatti-giant-title {
+  font-family: 'Cinzel', 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(4.5rem, 15vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: 0.16em;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #fef3c7 20%, #e29d6f 45%, #c27c4d 68%, #9a5327 88%, #683011 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 40px rgba(194, 123, 77, 0.7)) drop-shadow(0 4px 0 #683011);
+  margin-top: 60px;
+  user-select: none;
+  transition: all 0.4s ease;
+}
+
+.bugatti-giant-title:hover {
+  filter: drop-shadow(0 0 60px rgba(226, 157, 111, 1)) drop-shadow(0 0 100px rgba(251, 191, 36, 0.75));
+  transform: scale(1.02);
+}

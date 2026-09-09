@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vikas.elite</title>
+  <meta name="description" content="vikas.elite - Personal CYBERSECURITY Portfolio of Vikas, 2nd-year B.Tech in CYBERSECURITY at CVR College of Engineering. Ethical Hacking, Network Defense, CTFs, and Digital Forensics.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Custom Cyber Reticle Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
+
+  <!-- Fullscreen Matrix Rain Canvas Overlay -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- ========================================================================
+       TOP HUD NAVIGATION BAR
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <div class="nav-logo-icon">
+          <i class="fas fa-shield-halved"></i>
+        </div>
+        <div class="nav-brand-text">
+          VIKAS<span>.ELITE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu with 3D Violet & Gold Typography Highlights -->
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#hero" class="nav-link active"><span>// 00.</span><span class="nav-3d-highlight">HOME</span></a></li>
+          <li><a href="#about" class="nav-link"><span>// 01.</span><span class="nav-3d-highlight">ABOUT</span></a></li>
+          <li><a href="#arsenal" class="nav-link"><span>// 02.</span><span class="nav-3d-highlight">ARSENAL</span></a></li>
+          <li><a href="#terminal" class="nav-link"><span>// 03.</span><span class="nav-3d-highlight">TERMINAL</span></a></li>
+          <li><a href="#projects" class="nav-link"><span>// 04.</span><span class="nav-3d-highlight">PROJECTS</span></a></li>
+          <li><a href="#contact" class="nav-link"><span>// 05.</span><span class="nav-3d-highlight">CONNECT</span></a></li>
+          <li><a href="#mechanisms" class="nav-link"><span>// 06.</span><span class="nav-3d-highlight">MECHANISMS</span></a></li>
+        </ul>
+      </nav>
+
+      <!-- HUD Telemetry & Actions -->
+      <div class="nav-actions">
+        <div class="hud-telemetry">
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span>ONLINE</span>
+          </div>
+          <span style="color: var(--border-glass);">|</span>
+          <span id="hud-clock" style="color: var(--text-secondary);">00:00:00 IST</span>
+        </div>
+
+        <!-- Audio SFX Toggle -->
+        <button class="hud-btn" id="audio-toggle-btn" title="Toggle Cyber Audio FX" aria-label="Toggle Sound">
+          <div class="audio-bars">
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+          </div>
+        </button>
+
+        <!-- Theme Color Switcher -->
+        <button class="hud-btn" id="theme-toggle-btn" title="Cycle Color Theme (Matrix / Amber / Synthwave)" aria-label="Toggle Theme">
+          <i class="fas fa-palette"></i>
+        </button>
+
+        <!-- Mobile Nav Toggle -->
+        <button class="mobile-toggle" id="mobile-nav-toggle" aria-label="Toggle Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION (Glitch HUD & Identity)
+         ====================================================================== -->
+    <section class="hero-section scroll-stagger-info" id="hero">
+      <div class="container">
+        <div class="hero-grid" style="grid-template-columns: 1fr; max-width: 860px; margin: 0 auto; text-align: center;">
+          
+          <!-- Hero Column: Identity & Mission -->
+          <div class="hero-content" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="hero-badge-container">
+              <div class="about-me-3d-badge">
+                <i class="fas fa-sparkles" style="color: #fbbf24;"></i>
+                <span class="text-3d-violet-gold" style="font-size: 0.95rem; letter-spacing: 0.14em;">ABOUT ME</span>
+              </div>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="glitch-text" data-text="VIKAS">VIKAS</span>
+              <span class="alias">.ELITE</span>
+            </h1>
+
+            <!-- Dynamic Typewriter Subtitle -->
+            <div class="hero-typing-wrap" style="justify-content: center;">
+              <span style="color: var(--accent-primary); margin-right: 8px;">&gt;</span>
+              <span id="hero-typing-text"></span>
+              <span class="typing-cursor"></span>
+            </div>
+
+            <p class="hero-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+              Second-year <strong>B.Tech in CYBERSECURITY</strong> at <strong>CVR College of Engineering</strong>, Hyderabad. Passionate ethical hacker, <strong>digital influencer, and content creator</strong> focused on vulnerability research, packet forensics, cryptanalysis, and resilient systems design.
+            </p>
+
+            <!-- CTA Action Buttons -->
+            <div class="hero-actions" style="justify-content: center;">
+              <a href="#arsenal" class="btn-cyber">
+                <i class="fas fa-crosshairs"></i> EXPLORE ARSENAL
+              </a>
+              <a href="#terminal" class="btn-cyber btn-cyber-outline">
+                <i class="fas fa-terminal"></i> LAUNCH CLI &gt;_
+              </a>
+              <a href="https://instagram.com/gt__vickey" target="_blank" rel="noopener noreferrer" class="btn-cyber btn-cyber-instagram">
+                <i class="fab fa-instagram"></i> @gt__vickey
+              </a>
+            </div>
+
+            <!-- Live Telemetry Metrics Row -->
+            <div class="hero-stats-row" style="justify-content: center; width: 100%;">
+              <div class="stat-item">
+                <div class="stat-val"><span class="stat-count" data-target="180">0</span><span class="unit">+</span></div>
+                <div class="stat-label">Vulns Analyzed</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-val"><span class="stat-count" data-target="340">0</span><span class="unit">+</span></div>
+                <div class="stat-label">CTF Flags</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-val">2<span class="unit">ND</span></div>
+                <div class="stat-label">Year @ CVRCE</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-val"><span class="stat-count" data-target="14">0</span><span class="unit">+</span></div>
+                <div class="stat-label">Tools Built</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ABOUT SECTION // VLOGUE COVER & CLASSIFIED DOSSIER
+         ====================================================================== -->
+    <!-- ======================================================================
+         ABOUT SECTION // VLOGUE COVER & CLASSIFIED DOSSIER
+         ====================================================================== -->
+    <section class="section scroll-stagger-info" id="about">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="dot"></span>
+            <span>// PROFILE</span>
+          </div>
+          <h2 class="section-title profile-big-title text-3d-violet-gold">
+            PROFILE
+          </h2>
+          <p class="section-subtitle">
+            CYBERSECURITY SPECIALIST • DIGITAL INFLUENCER & CONTENT CREATOR
+          </p>
+        </div>
+
+        <div class="about-grid">
+          
+          <!-- Left: 3D Holographic Magazine Cover Card -->
+          <div class="magazine-card-wrapper">
+            <div class="magazine-card tilt-card scanlines">
+              <img src="assets/images/vikas-cover.jpg" alt="Vikas - VLOGUE Special Issue Cover">
+              <div class="magazine-hologram-overlay"></div>
+              
+              <div class="magazine-corner-badge">
+                <i class="fas fa-certificate"></i>
+                <span>OFFICIAL COVER // 2026</span>
+              </div>
+
+              <div class="magazine-footer-info">
+                <a href="https://instagram.com/gt__vickey" target="_blank" rel="noopener noreferrer" class="magazine-social-chip">
+                  <i class="fab fa-instagram"></i>
+                  <span>Instagram: @gt__vickey</span>
+                  <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Classified Dossier -->
+          <div class="hud-panel dossier-card corner-accent">
+            <div class="dossier-header">
+              <div class="dossier-tag">
+                <i class="fas fa-user-secret"></i>
+                <span>CLASSIFIED DOSSIER // AGENT ID: #VK-2026</span>
+              </div>
+              <div class="dossier-security-level">CLEARANCE: TS-CYBER</div>
+            </div>
+
+            <p class="dossier-bio">
+              I am <strong>Vikas</strong>, an aspiring cybersecurity engineer, <strong>digital influencer, and content creator</strong>. Completed my schooling at <strong>St. Joseph's School</strong>, and currently pursuing my <strong>B.Tech in CYBERSECURITY</strong> (2nd Year) at <strong>CVR College of Engineering</strong>, Hyderabad. I specialize in ethical hacking, vulnerability assessments, and digital forensics while producing dynamic viral tech, cybersecurity, and lifestyle media.
+            </p>
+            <p class="dossier-bio" style="margin-bottom: 24px;">
+              From analyzing malware payloads in the lab to deconstructing network protocols and competing in national Capture The Flag (CTF) challenges, my methodology combines deep theoretical foundations with hands-on adversarial thinking and digital media influence.
+            </p>
+
+            <!-- Specs Grid -->
+            <div class="dossier-specs-grid">
+              <div class="dossier-spec-item">
+                <span class="spec-key">Schooling</span>
+                <span class="spec-val highlight">St. Joseph's School</span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">College</span>
+                <span class="spec-val highlight">CVR College of Engineering</span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">B.Tech</span>
+                <span class="spec-val">2nd Year / Class of 2028</span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">Specialization</span>
+                <span class="spec-val highlight">CYBERSECURITY / CSE</span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">Creator Identity</span>
+                <span class="spec-val highlight">Influencer & Content Creator</span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">Content Ins Page</span>
+                <span class="spec-val"><a href="https://instagram.com/vickey_theelite" target="_blank" style="color: #ff5e98;">@vickey_theelite</a></span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">Main Ins Page</span>
+                <span class="spec-val"><a href="https://instagram.com/gt__vickey" target="_blank" style="color: #ff5e98;">@gt__vickey</a></span>
+              </div>
+              <div class="dossier-spec-item">
+                <span class="spec-key">Email</span>
+                <span class="spec-val"><a href="mailto:gtvickey16@gmail.com" style="color: var(--accent-primary);">gtvickey16@gmail.com</a></span>
+              </div>
+            </div>
+
+            <!-- Skill Tags -->
+            <div class="dossier-interests-title">// Core Competencies:</div>
+            <div class="dossier-tags">
+              <span class="tech-chip"><i class="fas fa-bug"></i> Web Exploitation</span>
+              <span class="tech-chip"><i class="fas fa-network-wired"></i> Packet Analysis</span>
+              <span class="tech-chip"><i class="fas fa-key"></i> Cryptanalysis</span>
+              <span class="tech-chip"><i class="fas fa-search"></i> Digital Forensics</span>
+              <span class="tech-chip"><i class="fab fa-python"></i> Python Automation</span>
+              <span class="tech-chip"><i class="fab fa-linux"></i> Linux Hardening</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CYBERSECURITY ARSENAL (Skills & Tooling)
+         ====================================================================== -->
+    <section class="section scroll-stagger-info" id="arsenal">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="dot"></span>
+            <span>// TECHNICAL CAPABILITIES</span>
+          </div>
+          <h2 class="section-title">
+            CYBERSECURITY <span class="text-gradient">ARSENAL</span>
+          </h2>
+          <p class="section-subtitle">
+            Comprehensive offensive and defensive security stack utilized for vulnerability research, pen-testing, and digital defense.
+          </p>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="arsenal-filters">
+          <button class="filter-chip active" data-filter="all">All Disciplines</button>
+          <button class="filter-chip" data-filter="offensive">Offensive Security</button>
+          <button class="filter-chip" data-filter="defensive">Defensive & SOC</button>
+          <button class="filter-chip" data-filter="forensics">Forensics & Crypto</button>
+          <button class="filter-chip" data-filter="programming">Scripting & Code</button>
+          <button class="filter-chip" data-filter="environment">Platforms & OS</button>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="skills-grid">
+          
+          <!-- Skill 1 -->
+          <div class="hud-panel skill-card tilt-card" data-category="offensive">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fas fa-spider"></i></div>
+              <div class="skill-level-badge">LEVEL 92%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Burp Suite & Web Pentesting</h3>
+              <p class="skill-desc">OWASP Top 10 vulnerabilities, SQL injection, XSS, CSRF, SSRF, IDOR, session manipulation, and API assessment.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 92%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 2 -->
+          <div class="hud-panel skill-card tilt-card" data-category="defensive">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+              <div class="skill-level-badge">LEVEL 88%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Wireshark & Packet Inspection</h3>
+              <p class="skill-desc">Deep packet inspection, protocol analysis (TCP/IP, DNS, TLS, HTTP), anomalous traffic detection, and stream reconstruction.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 88%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 3 -->
+          <div class="hud-panel skill-card tilt-card" data-category="offensive">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fas fa-crosshairs"></i></div>
+              <div class="skill-level-badge">LEVEL 85%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Nmap & Network Recon</h3>
+              <p class="skill-desc">Host discovery, port scanning, NSE scripting, firewall evasion, service version detection, and OS fingerprinting.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 4 -->
+          <div class="hud-panel skill-card tilt-card" data-category="offensive">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+              <div class="skill-level-badge">LEVEL 82%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Metasploit Framework</h3>
+              <p class="skill-desc">Exploit execution, payload customization with msfvenom, meterpreter sessions, privilege escalation, and lateral movement.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 82%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 5 -->
+          <div class="hud-panel skill-card tilt-card" data-category="forensics">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fas fa-fingerprint"></i></div>
+              <div class="skill-level-badge">LEVEL 86%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Digital Forensics & Volatility</h3>
+              <p class="skill-desc">Memory forensics with Volatility, disk image analysis with Autopsy, artifact extraction, and timeline reconstruction.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 86%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 6 -->
+          <div class="hud-panel skill-card tilt-card" data-category="forensics">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fas fa-lock"></i></div>
+              <div class="skill-level-badge">LEVEL 84%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Cryptography & Hash Cracking</h3>
+              <p class="skill-desc">RSA, AES-GCM, Diffie-Hellman, Hashcat dictionary/rule attacks, John the Ripper, and Steganography concealment.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 84%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 7 -->
+          <div class="hud-panel skill-card tilt-card" data-category="programming">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fab fa-python"></i></div>
+              <div class="skill-level-badge">LEVEL 90%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Python Security Scripting</h3>
+              <p class="skill-desc">Socket programming, Scapy packet manipulation, automated exploit crafting, Web scraping, and security automation.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill 8 -->
+          <div class="hud-panel skill-card tilt-card" data-category="environment">
+            <div class="skill-top">
+              <div class="skill-icon"><i class="fab fa-linux"></i></div>
+              <div class="skill-level-badge">LEVEL 94%</div>
+            </div>
+            <div>
+              <h3 class="skill-title">Kali Linux & System Hardening</h3>
+              <p class="skill-desc">Kernel security, iptables/UFW, Bash scripting, SSH hardening, user privilege management, and Docker isolation.</p>
+            </div>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 94%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         INTERACTIVE CLI TERMINAL (vikas-cli v2.0)
+         ====================================================================== -->
+    <section class="section scroll-stagger-info" id="terminal">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="dot"></span>
+            <span>// COMMAND LINE INTERFACE</span>
+          </div>
+          <h2 class="section-title">
+            INTERACTIVE <span class="text-gradient">TERMINAL</span>
+          </h2>
+          <p class="section-subtitle">
+            Direct console interface to query Vikas's credentials, execute simulated exploits, and toggle Matrix mode.
+          </p>
+        </div>
+
+        <div class="terminal-wrapper">
+          <div class="terminal-box">
+            
+            <!-- Terminal Header Bar -->
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <span class="t-btn t-close"></span>
+                <span class="t-btn t-min"></span>
+                <span class="t-btn t-max"></span>
+              </div>
+              <div class="terminal-title">
+                <i class="fas fa-terminal"></i> vikas@cvrce-cyberlab: ~ (zsh)
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-primary);">
+                CLI v2.0
+              </div>
+            </div>
+
+            <!-- Quick Action Command Chips -->
+            <div class="terminal-quick-chips">
+              <span class="chip-label">Quick Commands:</span>
+              <button class="cmd-chip" data-cmd="help">help</button>
+              <button class="cmd-chip" data-cmd="whoami">whoami</button>
+              <button class="cmd-chip" data-cmd="college">college</button>
+              <button class="cmd-chip" data-cmd="skills">skills</button>
+              <button class="cmd-chip" data-cmd="projects">projects</button>
+              <button class="cmd-chip" data-cmd="instagram">instagram</button>
+              <button class="cmd-chip" data-cmd="matrix">matrix</button>
+              <button class="cmd-chip" data-cmd="hack">hack</button>
+              <button class="cmd-chip" data-cmd="clear">clear</button>
+            </div>
+
+            <!-- Terminal Screen Body -->
+            <div class="terminal-body" id="terminal-body">
+              <div id="terminal-output"></div>
+
+              <!-- Input Row -->
+              <div class="terminal-input-row">
+                <span class="t-prompt-prefix">vikas@cvrce:~$</span>
+                <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" placeholder="Type command here (e.g. 'help', 'hack', 'skills')...">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FEATURED PROJECTS & CTF EXPLOITS
+         ====================================================================== -->
+    <section class="section scroll-stagger-info" id="projects">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="dot"></span>
+            <span>// REPOSITORIES & DEFENSE TOOLS</span>
+          </div>
+          <h2 class="section-title">
+            FEATURED <span class="text-gradient">PROJECTS</span>
+          </h2>
+          <p class="section-subtitle">
+            Production-grade defensive frameworks, automated intelligence scanners, and CTF challenge environments.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          
+          <!-- Project 1 -->
+          <div class="project-card tilt-card">
+            <div class="project-header-bar">
+              <div class="project-type-tag">
+                <i class="fas fa-shield-halved"></i> AI Intrusion Engine
+              </div>
+              <div class="project-status-pill">Active Build</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">ZeroDay Sentry</h3>
+              <p class="project-desc">
+                AI-powered network intrusion detection system capable of identifying zero-day anomalies, SYN floods, and malicious payload patterns in real-time.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">Scapy</span>
+                <span class="tech-chip">PyTorch</span>
+                <span class="tech-chip">FastAPI</span>
+              </div>
+            </div>
+            <div class="project-footer-bar">
+              <a href="#" class="project-action-link open-project-modal" data-project="zeroday-sentry">
+                <span>View Architecture</span> <i class="fas fa-arrow-right"></i>
+              </a>
+              <i class="fab fa-github" style="color: var(--text-muted); font-size: 1.1rem;"></i>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card tilt-card">
+            <div class="project-header-bar">
+              <div class="project-type-tag">
+                <i class="fas fa-radar"></i> OSINT Recon Suite
+              </div>
+              <div class="project-status-pill">Production</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Vanguard Recon Toolkit</h3>
+              <p class="project-desc">
+                Automated multi-threaded reconnaissance suite that enumerates subdomains, queries Certificate Transparency logs, and identifies misconfigured S3 buckets.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">Asyncio</span>
+                <span class="tech-chip">Shodan API</span>
+                <span class="tech-chip">Nmap</span>
+              </div>
+            </div>
+            <div class="project-footer-bar">
+              <a href="#" class="project-action-link open-project-modal" data-project="vanguard-recon">
+                <span>View Architecture</span> <i class="fas fa-arrow-right"></i>
+              </a>
+              <i class="fab fa-github" style="color: var(--text-muted); font-size: 1.1rem;"></i>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card tilt-card">
+            <div class="project-header-bar">
+              <div class="project-type-tag">
+                <i class="fas fa-file-shield"></i> Cryptography & Stego
+              </div>
+              <div class="project-status-pill">Stable</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">StegoShield Pro</h3>
+              <p class="project-desc">
+                High-entropy LSB image and audio steganographic encoder featuring AES-256 payload encryption and statistical steganalysis detection resistance.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">AES-256</span>
+                <span class="tech-chip">NumPy</span>
+                <span class="tech-chip">Pillow</span>
+              </div>
+            </div>
+            <div class="project-footer-bar">
+              <a href="#" class="project-action-link open-project-modal" data-project="stegoshield">
+                <span>View Architecture</span> <i class="fas fa-arrow-right"></i>
+              </a>
+              <i class="fab fa-github" style="color: var(--text-muted); font-size: 1.1rem;"></i>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card tilt-card">
+            <div class="project-header-bar">
+              <div class="project-type-tag">
+                <i class="fas fa-flag"></i> Collegiate CTF Platform
+              </div>
+              <div class="project-status-pill">Deployed @ CVRCE</div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">CVR CyberLab Sandbox</h3>
+              <p class="project-desc">
+                Curated cybersecurity training platform hosting 25+ jeopardy CTF challenges in Web Exploitation, Reverse Engineering, and Cryptography for CVRCE peers.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-chip">Docker</span>
+                <span class="tech-chip">CTFd</span>
+                <span class="tech-chip">Linux</span>
+                <span class="tech-chip">Node.js</span>
+              </div>
+            </div>
+            <div class="project-footer-bar">
+              <a href="#" class="project-action-link open-project-modal" data-project="cvr-cyberlab">
+                <span>View Architecture</span> <i class="fas fa-arrow-right"></i>
+              </a>
+              <i class="fab fa-github" style="color: var(--text-muted); font-size: 1.1rem;"></i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         INTERACTIVE 3D CYBER LAB & SECURITY MINI-TOOLS (Bottom Section)
+         ====================================================================== -->
+    <!-- ======================================================================
+         INSTAGRAM SHOWCASE & ENCRYPTED TRANSMISSION (Contact Section)
+         ====================================================================== -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-badge">
+            <span class="dot"></span>
+            <span>// TRANSMISSION & SOCIALS</span>
+          </div>
+          <h2 class="section-title">
+            CONNECT WITH <span class="text-gradient">VIKAS</span>
+          </h2>
+          <p class="section-subtitle">
+            Connect via official Instagram profiles or transmit an encrypted message.
+          </p>
+        </div>
+
+        <!-- 2-column layout: Left (Stacked Instagram Profiles Step-by-Step) | Right (Transmission Form) -->
+        <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: start;">
+
+          <!-- LEFT COLUMN: INSTAGRAM PAGES (Step-by-step: First Main Page, Second Content Page at Bottom) -->
+          <div style="display: flex; flex-direction: column; gap: 28px;">
+
+            <!-- STEP 1: FIRST PAGE - MAIN INSTAGRAM @gt__vickey -->
+            <div class="instagram-feature-card tilt-card">
+              <div>
+                <!-- Badge -->
+                <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: linear-gradient(135deg, rgba(192,132,252,0.18), rgba(251,191,36,0.18)); border: 1px solid rgba(192,132,252,0.45); border-radius: 4px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-primary); margin-bottom: 16px;">
+                  <i class="fab fa-instagram"></i> 01. MAIN INS PAGE
+                </div>
+
+                <!-- Profile Row -->
+                <div class="insta-header">
+                  <div class="insta-avatar">
+                    <img src="assets/images/dp_main.jpg" alt="Vikas gt__vickey DP">
+                  </div>
+                  <div class="insta-user-info">
+                    <div class="insta-handle">
+                      gt__vickey <i class="fas fa-circle-check insta-verified" title="Main Profile"></i>
+                    </div>
+                    <div class="insta-college-tag">
+                      <i class="fas fa-graduation-cap"></i> CVR College of Engineering
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real Instagram-style Stats -->
+                <div class="insta-stats-row">
+                  <div>
+                    <div class="insta-stat-num" id="main-posts">44</div>
+                    <div class="insta-stat-lbl">Posts</div>
+                  </div>
+                  <div>
+                    <div class="insta-stat-num" id="main-followers">485</div>
+                    <div class="insta-stat-lbl">Followers</div>
+                  </div>
+                  <div>
+                    <div class="insta-stat-num" id="main-following">450</div>
+                    <div class="insta-stat-lbl">Following</div>
+                  </div>
+                </div>
+
+                <!-- Bio -->
+                <p class="insta-bio-text" style="font-size: 0.88rem; line-height: 1.65;">
+                  <span style="color: var(--accent-secondary); font-weight: 600; font-style: italic; display: block; margin-bottom: 8px; border-left: 2px solid var(--accent-primary); padding-left: 10px; font-size: 0.82rem;">
+                    "If your life requires you to walk through hell, walk like you own the hell."
+                  </span>
+                  🛡️ <strong>Vikas // Elite</strong> • CYBERSECURITY, Influencer & Content Creator<br>
+                  🎓 B.Tech 2nd Year @ CVR College of Engineering<br>
+                  📍 Hyderabad, India
+                </p>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 16px;">
+                <button class="btn-cyber btn-cyber-instagram insta-follow-btn" data-username="gt__vickey" data-counter="main-followers" style="width: 100%;">
+                  <i class="fas fa-user-plus"></i> <span class="follow-label">Follow @gt__vickey</span>
+                </button>
+                <a href="https://instagram.com/gt__vickey" target="_blank" rel="noopener noreferrer" class="btn-cyber btn-cyber-outline" style="width: 100%; font-size: 0.8rem; padding: 10px 16px;">
+                  <i class="fab fa-instagram"></i> Open @gt__vickey Profile
+                </a>
+                <div style="text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
+                  <a href="https://instagram.com/gt__vickey" target="_blank" style="color: var(--accent-primary); text-decoration: underline;">instagram.com/gt__vickey</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2: SECOND PAGE (BOTTOM OF FIRST PAGE) - CONTENT INSTAGRAM @vickey_theelite -->
+            <div class="instagram-feature-card tilt-card">
+              <div>
+                <!-- Badge -->
+                <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(251, 191, 36, 0.14); border: 1px solid var(--accent-secondary); border-radius: 4px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-secondary); margin-bottom: 16px;">
+                  <i class="fab fa-instagram"></i> 02. CONTENT INS PAGE
+                </div>
+
+                <!-- Profile Row -->
+                <div class="insta-header">
+                  <div class="insta-avatar">
+                    <img src="assets/images/dp_contact.jpg" alt="Vikas vickey_theelite DP">
+                  </div>
+                  <div class="insta-user-info">
+                    <div class="insta-handle">
+                      vickey_theelite <i class="fas fa-circle-check insta-verified" title="Content Profile"></i>
+                    </div>
+                    <div class="insta-college-tag">
+                      <i class="fas fa-graduation-cap"></i> CVR College of Engineering
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Real Instagram-style Stats -->
+                <div class="insta-stats-row">
+                  <div>
+                    <div class="insta-stat-num" id="contact-posts">50</div>
+                    <div class="insta-stat-lbl">Posts</div>
+                  </div>
+                  <div>
+                    <div class="insta-stat-num" id="contact-followers">45</div>
+                    <div class="insta-stat-lbl">Followers</div>
+                  </div>
+                  <div>
+                    <div class="insta-stat-num" id="contact-following">4</div>
+                    <div class="insta-stat-lbl">Following</div>
+                  </div>
+                </div>
+
+                <!-- Bio -->
+                <p class="insta-bio-text" style="font-size: 0.88rem; line-height: 1.65;">
+                  <span style="color: var(--accent-secondary); font-weight: 600; font-style: italic; display: block; margin-bottom: 8px; border-left: 2px solid var(--accent-primary); padding-left: 10px; font-size: 0.82rem;">
+                    "If your life requires you to walk through hell, walk like you own the hell."
+                  </span>
+                  🛡️ <strong>Vikas // Elite</strong> • CYBERSECURITY, Influencer & Content Creator<br>
+                  🎓 B.Tech 2nd Year @ CVR College of Engineering<br>
+                  📍 Hyderabad, India
+                </p>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 16px;">
+                <button class="btn-cyber btn-cyber-instagram insta-follow-btn" data-username="vickey_theelite" data-counter="contact-followers" style="width: 100%;">
+                  <i class="fas fa-user-plus"></i> <span class="follow-label">Follow @vickey_theelite</span>
+                </button>
+                <a href="https://instagram.com/vickey_theelite" target="_blank" rel="noopener noreferrer" class="btn-cyber btn-cyber-outline" style="width: 100%; font-size: 0.8rem; padding: 10px 16px;">
+                  <i class="fab fa-instagram"></i> DM @vickey_theelite
+                </a>
+                <div style="text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
+                  <a href="https://instagram.com/vickey_theelite" target="_blank" style="color: var(--accent-secondary); text-decoration: underline;">instagram.com/vickey_theelite</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Direct & Collaboration Transmission Form -->
+          <div class="hud-panel contact-form-card corner-accent" style="position: sticky; top: 100px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-primary);">
+                <i class="fas fa-paper-plane"></i> TRANSMISSION DISPATCH
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">
+                LIVE RESPONSE ACTIVE
+              </div>
+            </div>
+
+            <!-- Email quick button -->
+            <a href="mailto:gtvickey16@gmail.com" class="btn-cyber btn-cyber-outline" style="width: 100%; margin-bottom: 16px; border-color: var(--accent-primary); color: var(--accent-primary);">
+              <i class="fas fa-envelope"></i> gtvickey16@gmail.com
+            </a>
+
+            <form id="cyber-contact-form">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">NAME</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="ENTER YOUR NAME..." required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Sender Email Address</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="name@domain.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-subject">DM For Collaboration</label>
+                <select id="contact-subject" class="form-input" style="background: rgba(0,0,0,0.6);">
+                  <option value="collab">Cybersecurity Collaboration / Project</option>
+                  <option value="ctf">CTF Team Recruitment</option>
+                  <option value="internship">Internship / Research Opportunity</option>
+                  <option value="general">General Inquiry & Tech Talk</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-message">Encrypted Payload Content</label>
+                <textarea id="contact-message" class="form-textarea" placeholder="Type your message here..." required></textarea>
+              </div>
+
+              <button type="submit" id="contact-submit-btn" class="btn-cyber" style="width: 100%; margin-bottom: 14px;">
+                <i class="fas fa-paper-plane"></i> TRANSMIT ENCRYPTED PAYLOAD
+              </button>
+
+              <!-- Bottom Security Verification Badge -->
+              <div style="text-align: center; padding: 8px; background: rgba(192,132,252,0.08); border: 1px dashed var(--border-subtle); border-radius: 4px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-primary);">
+                <i class="fas fa-shield-halved"></i> ENCRYPTED MESSAGE TRANSMITTER // END-TO-END SECURE
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ========================================================================
+       CYBERPUNK FOOTER & SYSTEM TELEMETRY
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="nav-brand" style="margin-bottom: 12px;">
+            <div class="nav-logo-icon">
+              <i class="fas fa-shield-halved"></i>
+            </div>
+            <div class="nav-brand-text">
+              VIKAS<span>.ELITE</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Personal cybersecurity portfolio of Vikas, 2nd-year B.Tech CYBERSECURITY undergraduate at CVR College of Engineering, Hyderabad. Dedicated to ethical hacking, security research, and vulnerability defense.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">// QUICK LINKS</div>
+          <ul class="footer-links">
+            <li><a href="#hero">// Home</a></li>
+            <li><a href="#about">// About Dossier</a></li>
+            <li><a href="#arsenal">// Security Arsenal</a></li>
+            <li><a href="#terminal">// CLI Terminal</a></li>
+            <li><a href="#projects">// Featured Projects</a></li>
+            <li><a href="#contact">// Connect & Socials</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">// CONNECT & SOCIALS</div>
+          <ul class="footer-links">
+            <li>
+              <a href="mailto:gtvickey16@gmail.com" style="color: var(--accent-primary); font-weight: 600;">
+                <i class="fas fa-envelope"></i> Email: gtvickey16@gmail.com
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/gt__vickey" target="_blank" rel="noopener noreferrer" style="color: #ff5e98;">
+                <i class="fab fa-instagram"></i> Main: @gt__vickey
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/vickey_theelite" target="_blank" rel="noopener noreferrer" style="color: #ff5e98;">
+                <i class="fab fa-instagram"></i> Contact: @vickey_theelite
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> GitHub: vikas-elite
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i> LinkedIn: Vikas Cyber
+              </a>
+            </li>
+            <li>
+              <span style="color: var(--text-muted);"><i class="fas fa-university"></i> CVRCE, Hyderabad</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 VIKAS.ELITE // ALL RIGHTS RESERVED. B.TECH CYBERSECURITY @ CVR COLLEGE OF ENGINEERING.
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="color: var(--accent-primary);"><i class="fas fa-lock"></i> SYSTEM SECURE</span>
+          <a href="#hero" class="project-action-link" style="color: var(--text-secondary);">
+            <i class="fas fa-arrow-up"></i> TOP
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       PROJECT DETAILS MODAL
+       ======================================================================== -->
+  <div class="cyber-modal" id="project-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-primary);" id="modal-title">
+          Project Details
+        </div>
+        <button id="modal-close" style="color: #fff; font-size: 1.2rem; cursor: pointer;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Content dynamically injected by main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- 3D Background Slideshow (loads first for instant background) -->
+  <script src="js/bg-slideshow.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/cyber-tools.js"></script>
+  <script src="js/tilt-effects.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
