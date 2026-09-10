@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BUGATTI CHIRON PUR SPORT — Mechanism Showcase</title>
+  <meta name="description" content="Interactive scroll-driven 3D Bugatti Chiron Pur Sport mechanism showcase — W16 engine, turbo, exhaust, spoiler, silencer, doors, and lighting." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="css/bugatti.css" />
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader-bugatti">
+    <div class="preloader-inner">
+      <div class="bugatti-logo-preloader">
+        <svg viewBox="0 0 200 60" class="bugatti-logo-svg">
+          <ellipse cx="100" cy="30" rx="95" ry="28" fill="none" stroke="#c47b4d" stroke-width="2.5"/>
+          <text x="100" y="38" text-anchor="middle" fill="#c47b4d" font-family="Orbitron, sans-serif" font-size="22" font-weight="800" letter-spacing="8">BUGATTI</text>
+        </svg>
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill" id="preloaderFill"></div>
+      </div>
+      <p class="preloader-text">LOADING MECHANISM SHOWCASE</p>
+    </div>
+  </div>
+
+  <!-- ===== SCROLL PROGRESS BAR ===== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== FIXED NAV ===== -->
+  <nav class="bugatti-nav" id="bugattiNav">
+    <a href="index.html" class="nav-back">&larr; Portfolio</a>
+    <div class="nav-center-logo">
+      <svg viewBox="0 0 200 60" class="nav-logo-svg">
+        <ellipse cx="100" cy="30" rx="90" ry="25" fill="none" stroke="#c47b4d" stroke-width="1.5"/>
+        <text x="100" y="36" text-anchor="middle" fill="#c47b4d" font-family="Orbitron, sans-serif" font-size="16" font-weight="700" letter-spacing="6">BUGATTI</text>
+      </svg>
+    </div>
+    <div class="nav-section-dots" id="navDots"></div>
+  </nav>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 1 : HERO — BUGATTI LOGO + CAR REVEAL                     -->
+  <!-- ================================================================ -->
+  <section class="section section-hero" id="sec-hero" data-section="0">
+    <div class="hero-bg-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <div class="hero-logo-container" id="heroLogo">
+        <svg viewBox="0 0 440 140" class="hero-main-logo">
+          <!-- Outer Oval -->
+          <ellipse cx="220" cy="70" rx="210" ry="62" fill="none" stroke="#c47b4d" stroke-width="3" opacity="0.7"/>
+          <ellipse cx="220" cy="70" rx="200" ry="55" fill="none" stroke="#c47b4d" stroke-width="1.5" opacity="0.4"/>
+          <!-- BUGATTI Text -->
+          <text x="220" y="82" text-anchor="middle" fill="#c47b4d" font-family="Orbitron, sans-serif" font-size="48" font-weight="900" letter-spacing="18">BUGATTI</text>
+          <!-- EB Initials -->
+          <text x="220" y="38" text-anchor="middle" fill="#d4965a" font-family="Orbitron, sans-serif" font-size="11" font-weight="600" letter-spacing="4">E B</text>
+        </svg>
+      </div>
+      <h1 class="hero-title" id="heroTitle">CHIRON PUR SPORT</h1>
+      <p class="hero-subtitle" id="heroSubtitle">8.0L QUAD-TURBO W16 &middot; 1,500 HP &middot; 1,180 LB-FT</p>
+      <div class="hero-car-image" id="heroCarImage">
+        <img src="assets/images/bugatti-front.jpg" alt="Bugatti Chiron Pur Sport Front" />
+        <div class="hero-car-glow"></div>
+      </div>
+      <div class="scroll-indicator" id="scrollIndicator">
+        <span>SCROLL TO EXPLORE MECHANISMS</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 2 : 3D CAR EXPLORER                                     -->
+  <!-- ================================================================ -->
+  <section class="section section-3d-car" id="sec-3d-car" data-section="1">
+    <div class="section-label">01</div>
+    <h2 class="section-heading">3D EXPLORER</h2>
+    <p class="section-desc">Drag to rotate &middot; Scroll to reveal mechanisms</p>
+    <div class="car-3d-wrapper">
+      <div id="bugatti-3d-canvas" class="bugatti-3d-canvas"></div>
+      <div class="car-controls">
+        <button id="btn-car-orbit" class="car-ctrl-btn" title="Reset View"><span class="ctrl-icon">⟳</span> Reset</button>
+        <button id="btn-car-doors" class="car-ctrl-btn" title="Toggle Doors"><span class="ctrl-icon">🚪</span> Doors</button>
+        <button id="btn-car-engine" class="car-ctrl-btn" title="Engine View"><span class="ctrl-icon">⚙</span> Engine</button>
+        <button id="btn-car-aero" class="car-ctrl-btn" title="Aero View"><span class="ctrl-icon">🏁</span> Aero</button>
+        <button id="btn-toggle-front-lights" class="car-ctrl-btn front-light-active" title="Toggle Headlights"><span class="ctrl-icon">💡</span> Front</button>
+        <button id="btn-toggle-back-lights" class="car-ctrl-btn back-light-active" title="Toggle Taillights"><span class="ctrl-icon">🔴</span> Rear</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 3 : W16 ENGINE — PISTON MECHANISM                       -->
+  <!-- ================================================================ -->
+  <section class="section section-engine" id="sec-engine" data-section="2">
+    <div class="section-label">02</div>
+    <div class="mechanism-split">
+      <div class="mechanism-visual">
+        <div id="w16-engine-canvas" class="engine-3d-canvas"></div>
+      </div>
+      <div class="mechanism-info">
+        <h2 class="section-heading">W16 ENGINE</h2>
+        <h3 class="mechanism-subhead">QUAD-TURBO W-TYPE PISTON MECHANISM</h3>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="spec-value">8.0L</span>
+            <span class="spec-label">Displacement</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">16</span>
+            <span class="spec-label">Cylinders</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">1,500</span>
+            <span class="spec-label">Horsepower</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">1,180</span>
+            <span class="spec-label">LB-FT Torque</span>
+          </div>
+        </div>
+        <p class="mechanism-desc">The legendary 8.0-litre W16 engine features <strong>four banks of four cylinders</strong> arranged in a W configuration. Each piston fires in a precise sequence, driven by a forged steel crankshaft. The engine block uses aluminum-silicon alloy for optimal heat dissipation and weight reduction.</p>
+        <div class="rpm-control">
+          <label for="w16-rpm-slider">RPM CONTROL</label>
+          <input type="range" id="w16-rpm-slider" min="800" max="7200" value="3500" step="100" />
+          <span id="w16-rpm-display" class="rpm-display">3,500 RPM</span>
+        </div>
+        <div class="piston-indicator">
+          <div class="piston-row">
+            <span class="piston-dot" data-bank="0"></span>
+            <span class="piston-dot" data-bank="0"></span>
+            <span class="piston-dot" data-bank="0"></span>
+            <span class="piston-dot" data-bank="0"></span>
+            <span class="bank-label">Bank A (-45°)</span>
+          </div>
+          <div class="piston-row">
+            <span class="piston-dot" data-bank="1"></span>
+            <span class="piston-dot" data-bank="1"></span>
+            <span class="piston-dot" data-bank="1"></span>
+            <span class="piston-dot" data-bank="1"></span>
+            <span class="bank-label">Bank B (-15°)</span>
+          </div>
+          <div class="piston-row">
+            <span class="piston-dot" data-bank="2"></span>
+            <span class="piston-dot" data-bank="2"></span>
+            <span class="piston-dot" data-bank="2"></span>
+            <span class="piston-dot" data-bank="2"></span>
+            <span class="bank-label">Bank C (+15°)</span>
+          </div>
+          <div class="piston-row">
+            <span class="piston-dot" data-bank="3"></span>
+            <span class="piston-dot" data-bank="3"></span>
+            <span class="piston-dot" data-bank="3"></span>
+            <span class="piston-dot" data-bank="3"></span>
+            <span class="bank-label">Bank D (+45°)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 4 : TURBOCHARGER MECHANISM                               -->
+  <!-- ================================================================ -->
+  <section class="section section-turbo" id="sec-turbo" data-section="3">
+    <div class="section-label">03</div>
+    <div class="mechanism-split reverse">
+      <div class="mechanism-visual">
+        <div id="turbo-canvas" class="turbo-3d-canvas"></div>
+      </div>
+      <div class="mechanism-info">
+        <h2 class="section-heading">QUAD TURBOCHARGERS</h2>
+        <h3 class="mechanism-subhead">SEQUENTIAL TWIN-SCROLL BOOST SYSTEM</h3>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="spec-value">4</span>
+            <span class="spec-label">Turbochargers</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">2.85</span>
+            <span class="spec-label">Bar Boost</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">150K</span>
+            <span class="spec-label">RPM Turbine</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">69.3</span>
+            <span class="spec-label">PSI Max</span>
+          </div>
+        </div>
+        <p class="mechanism-desc">Four IHI turbochargers in a <strong>two-stage sequential configuration</strong> — two smaller turbos spool at low RPM for instant response, while two larger turbos engage at higher RPM for maximum boost. The twin-scroll design separates exhaust pulses for minimal turbo lag.</p>
+        <div class="turbo-boost-bar">
+          <div class="boost-label">BOOST PRESSURE</div>
+          <div class="boost-track">
+            <div class="boost-fill" id="boostFill"></div>
+          </div>
+          <span class="boost-value" id="boostValue">0.0 BAR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 5 : EXHAUST SYSTEM                                       -->
+  <!-- ================================================================ -->
+  <section class="section section-exhaust" id="sec-exhaust" data-section="4">
+    <div class="section-label">04</div>
+    <div class="mechanism-split">
+      <div class="mechanism-visual">
+        <div id="exhaust-canvas" class="exhaust-3d-canvas"></div>
+      </div>
+      <div class="mechanism-info">
+        <h2 class="section-heading">EXHAUST SYSTEM</h2>
+        <h3 class="mechanism-subhead">3D-PRINTED TITANIUM QUAD EXHAUST</h3>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="spec-value">Ti</span>
+            <span class="spec-label">Titanium Alloy</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">1,050°</span>
+            <span class="spec-label">Max Temp °C</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">2</span>
+            <span class="spec-label">Catalytic Conv.</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">4</span>
+            <span class="spec-label">Exit Pipes</span>
+          </div>
+        </div>
+        <p class="mechanism-desc">The exhaust manifolds collect spent gases from all 16 cylinders, routing through <strong>four catalytic converters</strong> and into the 3D-printed titanium exhaust pipes. The quad-exit centerline exhaust features a heat-blue titanium finish that intensifies with temperature.</p>
+        <div class="exhaust-temp-gauge">
+          <div class="temp-label">EXHAUST TEMPERATURE</div>
+          <div class="temp-bar-track">
+            <div class="temp-bar-fill" id="exhaustTempFill"></div>
+          </div>
+          <span class="temp-value" id="exhaustTempValue">420°C</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 6 : SILENCER / MUFFLER                                   -->
+  <!-- ================================================================ -->
+  <section class="section section-silencer" id="sec-silencer" data-section="5">
+    <div class="section-label">05</div>
+    <div class="mechanism-split reverse">
+      <div class="mechanism-visual">
+        <div id="silencer-canvas" class="silencer-3d-canvas"></div>
+      </div>
+      <div class="mechanism-info">
+        <h2 class="section-heading">SILENCER SYSTEM</h2>
+        <h3 class="mechanism-subhead">ACTIVE VALVE ACOUSTIC DAMPING</h3>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="spec-value">2</span>
+            <span class="spec-label">Resonators</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">Active</span>
+            <span class="spec-label">Valve Control</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">95</span>
+            <span class="spec-label">dB Sport Mode</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">82</span>
+            <span class="spec-label">dB Quiet Mode</span>
+          </div>
+        </div>
+        <p class="mechanism-desc">The multi-chamber silencer uses <strong>perforated baffles and Helmholtz resonators</strong> to attenuate sound waves. Active exhaust valves bypass the silencer in Sport mode, unleashing the raw W16 symphony. In comfort mode, the gas flow is redirected through absorption chambers packed with stainless steel wool.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 7 : ACTIVE AERO SPOILER                                  -->
+  <!-- ================================================================ -->
+  <section class="section section-spoiler" id="sec-spoiler" data-section="6">
+    <div class="section-label">06</div>
+    <div class="mechanism-split">
+      <div class="mechanism-visual">
+        <div id="spoiler-canvas" class="spoiler-3d-canvas"></div>
+      </div>
+      <div class="mechanism-info">
+        <h2 class="section-heading">ACTIVE SPOILER</h2>
+        <h3 class="mechanism-subhead">HYDRAULIC REAR WING DEPLOYMENT</h3>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="spec-value">1.9m</span>
+            <span class="spec-label">Wing Span</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">456</span>
+            <span class="spec-label">kg Downforce</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">Carbon</span>
+            <span class="spec-label">Fiber Body</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-value">3</span>
+            <span class="spec-label">Positions</span>
+          </div>
+        </div>
+        <p class="mechanism-desc">The 1.9-meter fixed carbon fiber rear wing is paired with an <strong>actively controlled air brake</strong>. At speeds above 200 km/h, the wing angle increases via hydraulic actuators, generating up to 456 kg of downforce. In braking, the wing tilts to maximum angle as an air brake, reducing stopping distance by 15%.</p>
+        <div class="spoiler-angle-display">
+          <div class="angle-label">WING ANGLE</div>
+          <div class="angle-value" id="spoilerAngle">0°</div>
+          <div class="angle-modes">
+            <span class="angle-mode active" data-angle="0">RETRACTED</span>
+            <span class="angle-mode" data-angle="17">HANDLING</span>
+            <span class="angle-mode" data-angle="40">AIR BRAKE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 8 : DOOR MECHANISM                                       -->
+  <!-- ================================================================ -->
+  <section class="section section-doors" id="sec-doors" data-section="7">
+    <div class="section-label">07</div>
+    <div class="full-width-visual">
+      <h2 class="section-heading center-heading">DIHEDRAL DOORS</h2>
+      <h3 class="mechanism-subhead center-sub">SCISSOR DOOR OPENING MECHANISM</h3>
+      <div class="doors-showcase">
+        <div class="doors-3d-container">
+          <div id="doors-canvas" class="doors-3d-canvas"></div>
+        </div>
+        <div class="doors-info-overlay">
+          <div class="spec-grid compact">
+            <div class="spec-item">
+              <span class="spec-value">85°</span>
+              <span class="spec-label">Max Opening</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-value">Gas</span>
+              <span class="spec-label">Strut Assist</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-value">CF/Al</span>
+              <span class="spec-label">Composite</span>
+            </div>
+          </div>
+          <p class="mechanism-desc">The upward-opening dihedral doors rotate on <strong>dual-axis hinges</strong> — swinging outward and upward simultaneously. Gas strut dampers provide smooth, controlled opening. The door shells are carbon fiber over aluminum subframes, weighing just 12.4 kg each.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 9 : LIGHTING SYSTEM                                      -->
+  <!-- ================================================================ -->
+  <section class="section section-lights" id="sec-lights" data-section="8">
+    <div class="section-label">08</div>
+    <h2 class="section-heading center-heading">LIGHTING SYSTEM</h2>
+    <div class="lights-showcase">
+      <!-- FRONT LIGHTS -->
+      <div class="light-card front-light-card" id="frontLightCard">
+        <div class="light-visual">
+          <img src="assets/images/bugatti-front.jpg" alt="Bugatti Chiron Front Headlights" class="light-car-img" />
+          <div class="headlight-glow-overlay"></div>
+        </div>
+        <div class="light-info">
+          <h3>FRONT — QUAD LED</h3>
+          <p>Matrix LED headlights with <strong>4 individual LED modules</strong> per side. Adaptive high-beam with cornering function. Crystal-clear lens with chrome interior reflector.</p>
+          <div class="light-color-strip white-strip">
+            <span>BRIGHT WHITE — 6500K</span>
+          </div>
+        </div>
+      </div>
+      <!-- REAR LIGHTS -->
+      <div class="light-card rear-light-card" id="rearLightCard">
+        <div class="light-visual">
+          <img src="assets/images/bugatti-rear.jpg" alt="Bugatti Chiron Rear Taillights" class="light-car-img" />
+          <div class="taillight-glow-overlay"></div>
+        </div>
+        <div class="light-info">
+          <h3>REAR — FULL-WIDTH LED BLADE</h3>
+          <p>Continuous full-width LED taillight blade in <strong>deep red</strong>, spanning the entire rear. Sequential turn signals with dynamic sweep animation. Integrated high-mount stop lamp.</p>
+          <div class="light-color-strip red-strip">
+            <span>DEEP RED — 630nm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 10 : INTERIOR                                            -->
+  <!-- ================================================================ -->
+  <section class="section section-interior" id="sec-interior" data-section="9">
+    <div class="section-label">09</div>
+    <div class="interior-showcase">
+      <h2 class="section-heading center-heading">BLACK INTERIOR</h2>
+      <h3 class="mechanism-subhead center-sub">HANDCRAFTED LEATHER & CARBON FIBER COCKPIT</h3>
+      <div class="interior-canvas-container">
+        <div id="interior-canvas" class="interior-3d-canvas"></div>
+      </div>
+      <div class="interior-features">
+        <div class="interior-feature">
+          <span class="feature-icon">🖤</span>
+          <span class="feature-text">Full Black Nappa Leather</span>
+        </div>
+        <div class="interior-feature">
+          <span class="feature-icon">🏎️</span>
+          <span class="feature-text">Carbon Fiber Center Console</span>
+        </div>
+        <div class="interior-feature">
+          <span class="feature-icon">💎</span>
+          <span class="feature-text">Diamond-Cut Aluminum Controls</span>
+        </div>
+        <div class="interior-feature">
+          <span class="feature-icon">📊</span>
+          <span class="feature-text">Digital Instrument Cluster</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SECTION 11 : FULL SPECS                                          -->
+  <!-- ================================================================ -->
+  <section class="section section-specs" id="sec-specs" data-section="10">
+    <div class="section-label">10</div>
+    <h2 class="section-heading center-heading">TECHNICAL SPECIFICATIONS</h2>
+    <div class="specs-table-wrapper">
+      <table class="specs-table">
+        <tbody>
+          <tr><td class="spec-cat">ENGINE</td><td>8.0L Quad-Turbocharged W16</td></tr>
+          <tr><td class="spec-cat">CONFIGURATION</td><td>W-Type, 4 Banks × 4 Cylinders</td></tr>
+          <tr><td class="spec-cat">POWER</td><td>1,500 PS (1,479 HP) @ 6,700 RPM</td></tr>
+          <tr><td class="spec-cat">TORQUE</td><td>1,600 Nm (1,180 lb-ft) @ 2,000–6,000 RPM</td></tr>
+          <tr><td class="spec-cat">TURBOCHARGERS</td><td>4× IHI Sequential Twin-Scroll</td></tr>
+          <tr><td class="spec-cat">TRANSMISSION</td><td>7-Speed DSG Dual-Clutch</td></tr>
+          <tr><td class="spec-cat">DRIVETRAIN</td><td>Permanent AWD (Haldex Gen V)</td></tr>
+          <tr><td class="spec-cat">0–100 KM/H</td><td>2.3 seconds</td></tr>
+          <tr><td class="spec-cat">0–200 KM/H</td><td>5.5 seconds</td></tr>
+          <tr><td class="spec-cat">0–300 KM/H</td><td>12.4 seconds</td></tr>
+          <tr><td class="spec-cat">TOP SPEED</td><td>350 km/h (electronically limited)</td></tr>
+          <tr><td class="spec-cat">WEIGHT</td><td>1,900 kg (dry)</td></tr>
+          <tr><td class="spec-cat">EXHAUST</td><td>3D-Printed Titanium, Quad Centerline</td></tr>
+          <tr><td class="spec-cat">REAR WING</td><td>1.9m Fixed Carbon Fiber + Active Air Brake</td></tr>
+          <tr><td class="spec-cat">BRAKES</td><td>Carbon-Ceramic, 420mm Front / 400mm Rear</td></tr>
+          <tr><td class="spec-cat">TIRES</td><td>Michelin Pilot Sport Cup 2R</td></tr>
+          <tr><td class="spec-cat">PRICE</td><td>€3,000,000+ (MSRP)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bugatti-footer">
+    <svg viewBox="0 0 200 60" class="footer-logo-svg">
+      <ellipse cx="100" cy="30" rx="90" ry="25" fill="none" stroke="#c47b4d" stroke-width="1.5"/>
+      <text x="100" y="36" text-anchor="middle" fill="#c47b4d" font-family="Orbitron, sans-serif" font-size="14" font-weight="700" letter-spacing="5">BUGATTI</text>
+    </svg>
+    <p class="footer-text">CHIRON PUR SPORT — MECHANISM SHOWCASE</p>
+    <p class="footer-credit">Built for <a href="index.html">vikas.elite</a> Portfolio</p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/bugatti-mechanisms.js"></script>
+</body>
+</html>
